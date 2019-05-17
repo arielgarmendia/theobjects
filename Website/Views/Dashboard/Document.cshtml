@@ -1,0 +1,40 @@
+﻿@model Product
+
+@{
+    Layout = "/Views/Shared/_DocLayout.cshtml";
+}
+
+@section Styles {
+    <!-- Document Title ============================================= -->
+    <title>@Model.Name</title>
+}
+
+
+<!-- Content
+============================================= -->
+    <section id="content">
+
+        @if (Model != null)
+        {
+            <p><strong>Product Name: </strong></p>
+            <p>@Model.Name</p>
+            <p><strong>Insertion Date: </strong></p>
+            <p>@Model.InsertionDate.ToString("dd/MM/yyyy")</p>
+            <p><strong>Type: </strong></p>
+            <p>@Model.Type</p>
+            <p><strong>Description: </strong></p>
+            <p>@Model.Description</p>
+            <p><strong>Expiry Date: </strong></p>
+            <p>@Model.ExpiryDate.ToString("dd/MM/yyyy")</p>
+            <p><strong>Price: </strong></p>
+            <p>@Model.Price</p>
+            <p><strong>Weight: </strong></p>
+            <p>@Model.Weight</p>
+        }
+        else
+        {
+            <p>No Product to generate Documentation.</p>
+        }
+
+    </section>
+<!-- #content end -->

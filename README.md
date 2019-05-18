@@ -1,5 +1,6 @@
 # theInventory
 
+
 - Before launching the website check the WebAPI application is running in yout IIS Express.
 - The WebAPI application uses SQL lite to store the inventory products.
 - Login and password to access the website are: 

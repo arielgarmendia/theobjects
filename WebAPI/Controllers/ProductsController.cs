@@ -26,9 +26,26 @@ namespace Inventory.WebAPI.Controllers
         [Route("api/products/all")]
         public ActionResult<List<Product>> GetAll()
         {
-            var product = new Product() { host_path = _env.WebRootPath };
+            try
+            {
+                var product = new Product() { host_path = _env.WebRootPath };
 
-            return product.SelectAll();
+                return product.SelectAll();
+            }
+            catch (Exception exp)
+            {
+                var dummy = new List<Product>();
+
+                var product = new Product()
+                {
+                    Name = exp.Message,
+                    Description = exp.StackTrace
+                };
+
+                dummy.Add(product);
+
+                return dummy;
+            }
         }
 
         // GET api/products/{name}
@@ -46,20 +63,28 @@ namespace Inventory.WebAPI.Controllers
         [Route("api/products")]
         public void Send([FromBody]JToken jsonbody)
         {
-            List<Product> receivedProducts = JsonConvert.DeserializeObject<List<Product>>(jsonbody.ToString());
-
-            if (receivedProducts.Any())
+            try
             {
-                foreach (var product in receivedProducts)
-                {
-                    product.host_path = _env.WebRootPath;
+                List<Product> receivedProducts = JsonConvert.DeserializeObject<List<Product>>(jsonbody.ToString());
 
-                    if (product.Select(product.Name) != null)
-                        product.Update(product, true);
-                    else
-                        product.Insert(product);
+                if (receivedProducts.Any())
+                {
+                    foreach (var product in receivedProducts)
+                    {
+                        product.host_path = _env.WebRootPath;
+
+                        if (product.Select(product.Name) != null)
+                            product.Update(product, true);
+                        else
+                            product.Insert(product);
+                    }
                 }
             }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
 
         // POST api/products

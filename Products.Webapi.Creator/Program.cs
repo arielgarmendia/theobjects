@@ -77,15 +77,15 @@ namespace Products.Webapi.Creator
 
             try
             {
-                //var got_products = await ProductsProxy.GetProducts();
+                var got_products = await ProductsProxy.GetProducts();
 
-                //foreach (var item in got_products)
-                //    Console.WriteLine("retrieved products: " + item.Name);
+                foreach (var item in got_products)
+                    Console.WriteLine("retrieved products: " + item.Name);
 
                 //foreach (var item in got_products)
                 //    await ProductsProxy.DeleteProduct(item.Name);
 
-                //var result = await ProductsProxy.SendProducts(products);
+                var result = await ProductsProxy.SendProducts(products);
 
                 //Console.WriteLine("sending products result: " + result);
 
@@ -93,11 +93,11 @@ namespace Products.Webapi.Creator
 
                 singleProduct.Add(product5);
 
-                var result = await ProductsProxy.SendProducts(singleProduct);
+                result = await ProductsProxy.SendProducts(singleProduct);
 
                 Console.WriteLine("sending single product result: " + result);
 
-                var got_products = await ProductsProxy.GetProducts();
+                got_products = await ProductsProxy.GetProducts();
 
                 foreach (var item in got_products)
                     Console.WriteLine("retrieved products: " + item.Name);

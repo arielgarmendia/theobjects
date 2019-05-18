@@ -10,5 +10,6 @@ namespace Inventory.Website.Models
         public List<Product> Products { get; set; }
         public List<Product> Expired { get; set; }
         public bool ProductRemoved { get; set; }
+        public string Message { get; set; }
     }
 }

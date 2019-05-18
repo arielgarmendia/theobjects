@@ -86,39 +86,39 @@
         <div class="container clearfix">
 
             <div class="col_full card">
-                <form id="save-address" name="save-address" class="nobottommargin" asp-action="SaveAddress" asp-controller="CompanyContactEdit">
+                <form id="save-product" name="save-product" class="nobottommargin" asp-action="Insert" asp-controller="Insertion">
 
                     <div class="card-header">PRODUCT DETAILS</div>
                     <div class="card-body">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="inputAddress">Name</label>
-                                <input class="required form-control" id="inputAddress" name="inputAddress" value="">
+                                <label for="inputName">Name</label>
+                                <input class="required form-control" id="inputName" name="inputName" value="">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="inputAddress2">Type</label>
-                                <input type="text" class="form-control" id="inputAddress2" name="inputAddress2" placeholder="" value="">
+                                <label for="inputType">Type</label>
+                                <input type="text" class="form-control" id="inputType" name="inputType" placeholder="" value="">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label for="inputAddress">Description</label>
-                                <input class="required form-control" id="inputAddress" name="inputAddress" value="">
+                                <label for="inputDesc">Description</label>
+                                <input class="required form-control" id="inputDesc" name="inputDesc" value="">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-3">
-                                <label for="inputCity">Weight in grams</label>
-                                <input type="text" class="form-control" id="inputCity" name="inputCity" placeholder="250" value="">
+                                <label for="inputWeight">Weight in grams</label>
+                                <input type="text" class="form-control" id="inputWeight" name="inputWeight" placeholder="250" value="">
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="inputCounty">Price</label>
-                                <input type="text" class="form-control" id="inputCounty" name="inputCounty" placeholder="2.50" value="">
+                                <label for="inputPrice">Price</label>
+                                <input type="text" class="form-control" id="inputPrice" name="inputPrice" placeholder="2.50" value="">
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Expiry Date</label>
                                 <div class="input-group input-daterange travel-date-group">
-                                    <input type="text" id="arrivingDate" name="arrivingDate" value="@DateTime.Today.ToString("dd/MM/yyyy")" class="form-control tleft format today" placeholder="DD/MM/YYYY" />
+                                    <input type="text" id="expiryDate" name="expiryDate" value="@DateTime.Today.ToString("dd/MM/yyyy")" class="form-control tleft format today" placeholder="DD/MM/YYYY" />
                                     <div class="input-group-append">
                                         <div class="input-group-text"><i class="icon-calendar2"></i></div>
                                     </div>
@@ -128,9 +128,9 @@
                     </div>
 
                     <div class="card-footer">
-                        <a href="javascript:addressClicked();" class="button button-3d button-mini button-rounded button-red"><i class="icon-save"></i><span>Save</span></a>
+                        <a href="javascript:saveClicked();" class="button button-3d button-mini button-rounded button-red"><i class="icon-save"></i><span>Save</span></a>
                     </div>
-
+                    @if (Model != null && Model.Message != "") { <p>@Model.Message</p>}
                 </form>
 
             </div>
@@ -150,6 +150,9 @@
 
     <!-- Bootstrap Select Plugin -->
     <script src="~/js/components/bs-select.js"></script>
+
+    <!-- Moment Plugin -->
+    <script src="~/js/components/moment.js"></script>
 
     <!-- Date & Time Picker JS -->
     <script src="~/js/components/moment.js"></script>
@@ -172,85 +175,96 @@
 
         });
 
-        function addressClicked() {
+        function saveClicked() {
             var allValid = true;
 
-            if (document.getElementById('inputAddress').value == '') {
+            if (document.getElementById('inputName').value == '') {
                 if (allValid) {
                     allValid = false;
-                    $("#inputAddress").focus();
+                    $("#inputName").focus();
                 }
 
-                $("#inputAddress").addClass('error');
+                $("#inputName").addClass('error');
             }
             else
-                $("#inputAddress").removeClass('error');
+                $("#inputName").removeClass('error');
 
-            if (document.getElementById('inputCity').value == '') {
+            if (document.getElementById('inputType').value == '') {
                 if (allValid) {
                     allValid = false;
-                    $("#inputCity").focus();
+                    $("#inputType").focus();
                 }
 
-                $("#inputCity").addClass('error');
+                $("#inputType").addClass('error');
             }
             else
-                $("#inputCity").removeClass('error');
+                $("#inputType").removeClass('error');
 
-            if (document.getElementById('inputPostcode').value == '') {
+            if (document.getElementById('inputWeight').value == '') {
                 if (allValid) {
                     allValid = false;
-                    $("#inputPostcode").focus();
+                    $("#inputWeight").focus();
                 }
 
-                $("#inputPostcode").addClass('error');
+                $("#inputWeight").addClass('error');
             }
-            else
-                $("#inputPostcode").removeClass('error');
+            else {
+                if ($.isNumeric(document.getElementById('inputWeight').value))
+                    $("#inputWeight").removeClass('error');
+                else {
+                    if (allValid) {
+                        allValid = false;
+                        $("#inputWeight").focus();
+                    }
+
+                    $("#inputWeight").addClass('error');
+                }
+            }
+
+            if (document.getElementById('inputPrice').value == '') {
+                if (allValid) {
+                    allValid = false;
+                    $("#inputPrice").focus();
+                }
+
+                $("#inputPrice").addClass('error');
+            }
+            else {
+                if ($.isNumeric(document.getElementById('inputPrice').value))
+                    $("#inputPrice").removeClass('error');
+                else {
+                    if (allValid) {
+                        allValid = false;
+                        $("#inputPrice").focus();
+                    }
+
+                    $("#inputPrice").addClass('error');
+                }
+            }
+
+            if (document.getElementById('expiryDate').value == '') {
+                if (allValid) {
+                    allValid = false;
+                    $("#expiryDate").focus();
+                }
+
+                $("#expiryDate").addClass('error');
+            }
+            else {
+                if (moment(document.getElementById('expiryDate').value, 'DD/MM/YYYY', true).isValid())
+                    $("#expiryDate").removeClass('error');
+                else {
+                    if (allValid) {
+                        allValid = false;
+                        $("#expiryDate").focus();
+                    }
+
+                    $("#expiryDate").addClass('error');
+                }
+            }
 
             if (allValid) {
-                $('#save-address').submit();
-            }
-        }
-
-        function contactClicked() {
-            var allValid = true;
-
-            if (document.getElementById('inputPhone').value == '') {
-                if (allValid) {
-                    allValid = false;
-                    $("#inputPhone").focus();
-                }
-
-                $("#inputPhone").addClass('error');
-            }
-            else
-                $("#inputPhone").removeClass('error');
-
-            if (document.getElementById('inputEmail').value == '') {
-                if (allValid) {
-                    allValid = false;
-                    $("#inputEmail").focus();
-                }
-
-                $("#inputEmail").addClass('error');
-            }
-            else
-                $("#inputEmail").removeClass('error');
-
-            if (document.getElementById('inputPerson').value == '') {
-                if (allValid) {
-                    allValid = false;
-                    $("#inputPerson").focus();
-                }
-
-                $("#inputPerson").addClass('error');
-            }
-            else
-                $("#inputPerson").removeClass('error');
-
-            if (allValid) {
-                $('#save-contact').submit();
+                $('#save-product').submit();
             }
         }
     </script>

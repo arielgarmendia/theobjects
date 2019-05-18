@@ -1,6 +1,8 @@
 ![enter image description here](https://theinventory.travelgosystems.net/images/logo.png)
 #
 
+> **Important tips and notes:**
+
 - Before launching the website check the WebAPI application is running in yout IIS Express.
 - The WebAPI application uses SQLite to store the inventory products.
 - Login and password to access the website are: 
@@ -12,4 +14,3 @@
     - https://theinventorywebapi.travelgosystems.net
 - If you remove all products in the inventory and want to insert few test ones, just run the console application provided in the solution: Products.Webapi.Creator.
 - JS validators located at Insertion page just show a red box if empty or invalid values.
-

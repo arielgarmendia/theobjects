@@ -13,6 +13,7 @@
 - An online working version of both, the website and *WebAPI* service are available here:
     - https://theinventory.travelgosystems.net
     - https://theinventorywebapi.travelgosystems.net
+    
       >Usage example: https://theinventorywebapi.travelgosystems.net/api/products/all
 - If you remove all products in the inventory and want to insert few test ones, just run the console application provided in the solution: *Products.Webapi.Creator*.
 - *JS* validators located at Insertion page just show a red box if empty or invalid values.

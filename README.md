@@ -1,4 +1,4 @@
-![enter image description here](https://theinventory.travelgosystems.net/images/logo.png)
+![enter image description here]()
 ##
 > **Description:**
 

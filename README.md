@@ -2,7 +2,7 @@
 
 
 - Before launching the website check the WebAPI application is running in yout IIS Express.
-- The WebAPI application uses SQLlite to store the inventory products.
+- The WebAPI application uses SQLite to store the inventory products.
 - Login and password to access the website are: 
     - login: admin 
     - password: 1Inventory23

@@ -1,7 +1,6 @@
 ![enter image description here](https://theinventory.travelgosystems.net/images/logo.png)
-
-> **Important tips and notes:**
 ##
+> **Important tips and notes:**
 
 
 

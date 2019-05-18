@@ -1,7 +1,9 @@
 ![enter image description here](https://theinventory.travelgosystems.net/images/logo.png)
-#
 
 > **Important tips and notes:**
+##
+
+
 
 - Before launching the website check the WebAPI application is running in yout IIS Express.
 - The WebAPI application uses SQLite to store the inventory products.

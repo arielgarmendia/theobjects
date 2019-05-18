@@ -11,7 +11,4 @@
     - https://theinventory.travelgosystems.net
     - https://theinventorywebapi.travelgosystems.net
 - If you remove all products in the inventory and want to insert few test ones, just run the console application provided in the solution: Products.Webapi.Creator.
-- JS validators located at Insertion page just check for empty values: 
-    - Weight value needs to be checked as a valid int pattern.
-    - Price value needs to be checked as a valid decimal pattern.
-    - Expiry Date needs to be checked as a valid dd/mm/yyyy string pattern.
+- JS validators located at Insertion page just show a red box if empty or invalid values.

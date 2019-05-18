@@ -4,6 +4,7 @@
 
 
 
+- **Clone** repository in your local repo folder then **Open** solution then **Rebuild** solution to restore **Nuget** packages.
 - Before launching the website check the *WebAPI* application is running in yout *IIS Express*.
 - The *WebAPI* application uses *SQLite* to store the inventory products.
 - Login and password to access the website are: 

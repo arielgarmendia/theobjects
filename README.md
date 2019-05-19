@@ -1,7 +1,8 @@
 <p align="center"><img src="https://theinventory.travelgosystems.net/images/logo.png"></p>
 
 ##
-> **Description:**
+
+## **About:**
 
 Example solution to provide basic functionalities for a products inventory. 
 
@@ -10,7 +11,7 @@ Example solution to provide basic functionalities for a products inventory.
 - Inventory management website project uses MVC on top of .Net Core 2.1. Security, Session (TempData) and Config extensions. Bootstrap theme and controls.
 - Console application project can be used to test WebAPI functionalities andfor initial products insertion as well.
 
-> **Important tips and notes:**
+## **Important tips and notes:**
 
 
 

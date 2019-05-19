@@ -32,19 +32,9 @@ namespace Inventory.WebAPI.Controllers
 
                 return product.SelectAll();
             }
-            catch (Exception exp)
+            catch (Exception)
             {
-                var dummy = new List<Product>();
-
-                var product = new Product()
-                {
-                    Name = exp.Message,
-                    Description = exp.StackTrace
-                };
-
-                dummy.Add(product);
-
-                return dummy;
+                throw;
             }
         }
 
@@ -53,9 +43,16 @@ namespace Inventory.WebAPI.Controllers
         [Route("api/products/{name}")]
         public ActionResult<Product> Get(string name)
         {
-            var product = new Product() { host_path = _env.WebRootPath };
+            try
+            {
+                var product = new Product() { host_path = _env.WebRootPath };
 
-            return product.Select(name);
+                return product.Select(name);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         // POST api/products
@@ -84,7 +81,6 @@ namespace Inventory.WebAPI.Controllers
             {
                 throw;
             }
-
         }
 
         // POST api/products
@@ -92,9 +88,16 @@ namespace Inventory.WebAPI.Controllers
         [Route("api/products/delete/{name}")]
         public void DeleteByName(string name)
         {
-            var product = new Product() { host_path = _env.WebRootPath };
+            try
+            {
+                var product = new Product() { host_path = _env.WebRootPath };
 
-            product.Delete(name);
+                product.Delete(name);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

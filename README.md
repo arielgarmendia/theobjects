@@ -1,4 +1,5 @@
-![theInventory](https://theinventory.travelgosystems.net/images/logo.png)
+<p align="center"><img src="https://theinventory.travelgosystems.net/images/logo.png"></p>
+
 ##
 > **Description:**
 

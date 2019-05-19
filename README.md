@@ -1,7 +1,5 @@
 <p align="center"><img src="https://theinventory.travelgosystems.net/images/logo.png"></p>
 
-##
-
 ## **About:**
 
 Example solution to provide basic functionalities for a products inventory. 

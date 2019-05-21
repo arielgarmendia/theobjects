@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Products.Webapi.Creator.Model
+namespace Inventory.WebAPI.Proxy.Models
 {
     public class BaseProduct
     {

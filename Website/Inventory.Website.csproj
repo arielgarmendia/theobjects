@@ -688,4 +688,8 @@
     <Folder Include="Connected Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Inventory.WebAPI.Proxy\Inventory.WebAPI.Proxy.csproj" />
+  </ItemGroup>
+
 </Project>

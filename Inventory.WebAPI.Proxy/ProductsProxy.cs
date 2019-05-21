@@ -1,18 +1,17 @@
-﻿using Newtonsoft.Json;
+﻿using Inventory.WebAPI.Proxy.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net;
-using Inventory.Website.Models;
 
-namespace Inventory.Website.Proxy
+namespace Inventory.WebAPI.Proxy
 {
     public class ProductsProxy
     {
-        static string baseAddress = "https://theinventorywebapi.travelgosystems.net/";//"http://localhost:61889/";
+        static string baseAddress = "http://localhost:61889/";//"https://theinventorywebapi.travelgosystems.net/";
 
         public static async Task<bool> SendProducts(List<Product> products)
         {

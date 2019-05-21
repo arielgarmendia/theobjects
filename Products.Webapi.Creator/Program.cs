@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Inventory.WebAPI.Proxy;
+using Inventory.WebAPI.Proxy.Models;
+using System;
 using System.Collections.Generic;
-using Products.Webapi.Creator.Model;
 
 namespace Products.Webapi.Creator
 {
@@ -104,7 +105,7 @@ namespace Products.Webapi.Creator
 
                 var singleProduct2 = await ProductsProxy.GetProduct("Silver Olives");
 
-                if(singleProduct2 != null)
+                if (singleProduct2 != null)
                     Console.WriteLine("retrieved single product: " + singleProduct2.Name);
                 else
                     Console.WriteLine("product was not found in inventory");

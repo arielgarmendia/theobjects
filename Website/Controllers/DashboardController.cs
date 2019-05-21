@@ -6,9 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Inventory.Website.Models;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
-using Inventory.Website.Proxy;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Inventory.WebAPI.Proxy;
+using Inventory.WebAPI.Proxy.Models;
 
 namespace Inventory.Website.Controllers
 {

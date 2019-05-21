@@ -55,7 +55,12 @@ namespace Inventory.Website.Controllers
             {
                 var singleProduct = await ProductsProxy.GetProduct(Id);
 
-                return View("Document", singleProduct);
+                var pageData = new DocumentPageData()
+                {
+                    product = singleProduct
+                };
+
+                return View("Document", pageData);
             }
             else
                 return View("Document", null);

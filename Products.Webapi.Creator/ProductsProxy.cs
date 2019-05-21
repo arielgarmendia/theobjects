@@ -44,6 +44,9 @@ namespace Products.Webapi.Creator
 
                 var response = await client.GetAsync("api/products/all");
 
+                //Direct Get without JSon's DeserializeObject
+                List<Product> products = await response.Content.ReadAsAsync<List<Product>>();
+
                 if (response.IsSuccessStatusCode)
                 {
                     using (HttpContent content = response.Content)
@@ -78,6 +81,9 @@ namespace Products.Webapi.Creator
                 client.BaseAddress = new Uri(baseAddress);
 
                 var response = await client.GetAsync("api/products/" + WebUtility.HtmlEncode(name));
+
+                //Direct Get without JSon's DeserializeObject
+                Product product = await response.Content.ReadAsAsync<Product>();
 
                 if (response.IsSuccessStatusCode)
                 {

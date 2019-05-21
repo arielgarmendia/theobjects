@@ -6,6 +6,7 @@ Example solution to provide basic functionalities for a products inventory.
 
 - Using .Net Core 2.1 and SQLite. 
 - WebAPI service project manages the inventory operations and interacts with the database.
+- Inventory.WebAPI.Proxy acts as a middle layer to get/post objects from/to the WebAPI service and the consuming clients.
 - Inventory management website project uses MVC on top of .Net Core 2.1. Security, Session (TempData) and Config extensions. Bootstrap theme and controls.
 - Console application project can be used to test WebAPI functionalities and for initial products insertion as well.
 

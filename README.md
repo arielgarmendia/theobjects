@@ -4,7 +4,7 @@
 
 Example solution to provide basic functionalities for a products inventory. 
 
-- Check Problem.md (in spanish) to review functionalities and requirements.
+- Check **problem.md** (in spanish) to review functionalities and requirements.
 - Using *.Net Core 2.1* and *SQLite*. 
 - *WebAPI* service project manages the inventory operations and interacts with the database.
 - *Inventory.WebAPI.Proxy* acts as a middle layer to get/post objects from/to the *WebAPI* service and the consuming clients.

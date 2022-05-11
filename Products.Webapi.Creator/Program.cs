@@ -14,70 +14,70 @@ namespace Products.Webapi.Creator
 
         static async void Products()
         {
-            var products = new List<Product>();
-
-            var product1 = new Product()
-            {
-                Name = "Golden Meat",
-                InsertionDate = DateTime.Today,
-                ExpiryDate = DateTime.Today.AddDays(30),
-                Description = "",
-                Price = 2,
-                Weight = 500,
-                Type = "Canned Meat"
-            };
-
-            var product2 = new Product()
-            {
-                Name = "Silver Olives",
-                InsertionDate = DateTime.Today,
-                ExpiryDate = DateTime.Today.Subtract(new TimeSpan(30, 0, 0, 0, 0)),
-                Description = "",
-                Price = 2,
-                Weight = 200,
-                Type = "Olives"
-            };
-
-            var product3 = new Product()
-            {
-                Name = "Silver Meat",
-                InsertionDate = DateTime.Today,
-                ExpiryDate = DateTime.Today.AddDays(30),
-                Description = "",
-                Price = 2,
-                Weight = 500,
-                Type = "Canned Meat"
-            };
-
-            var product4 = new Product()
-            {
-                Name = "Golden Olives",
-                InsertionDate = DateTime.Today,
-                ExpiryDate = DateTime.Today.Subtract(new TimeSpan(30, 0, 0, 0, 0)),
-                Description = "",
-                Price = 2,
-                Weight = 200,
-                Type = "Olives"
-            };
-
-            var product5 = new Product()
-            {
-                Name = "Golden Anchovies",
-                InsertionDate = DateTime.Today,
-                ExpiryDate = DateTime.Today.Subtract(new TimeSpan(30, 0, 0, 0, 0)),
-                Description = "",
-                Price = 12,
-                Weight = 500,
-                Type = "Anchovies"
-            };
-
-            products.Add(product1);
-            products.Add(product2);
-            products.Add(product3);
-            products.Add(product4);
-
             try
             {
+                var products = new List<Product>();
+
+                var product1 = new Product()
+                {
+                    Name = "Golden Meat",
+                    InsertionDate = DateTime.Today,
+                    ExpiryDate = DateTime.Today.AddDays(30),
+                    Description = "",
+                    Price = 2,
+                    Weight = 500,
+                    Type = "Canned Meat"
+                };
+
+                var product2 = new Product()
+                {
+                    Name = "Silver Olives",
+                    InsertionDate = DateTime.Today,
+                    ExpiryDate = DateTime.Today.Subtract(new TimeSpan(30, 0, 0, 0, 0)),
+                    Description = "",
+                    Price = 2,
+                    Weight = 200,
+                    Type = "Olives"
+                };
+
+                var product3 = new Product()
+                {
+                    Name = "Silver Meat",
+                    InsertionDate = DateTime.Today,
+                    ExpiryDate = DateTime.Today.AddDays(30),
+                    Description = "",
+                    Price = 2,
+                    Weight = 500,
+                    Type = "Canned Meat"
+                };
+
+                var product4 = new Product()
+                {
+                    Name = "Golden Olives",
+                    InsertionDate = DateTime.Today,
+                    ExpiryDate = DateTime.Today.Subtract(new TimeSpan(30, 0, 0, 0, 0)),
+                    Description = "",
+                    Price = 2,
+                    Weight = 200,
+                    Type = "Olives"
+                };
+
+                var product5 = new Product()
+                {
+                    Name = "Golden Anchovies",
+                    InsertionDate = DateTime.Today,
+                    ExpiryDate = DateTime.Today.Subtract(new TimeSpan(30, 0, 0, 0, 0)),
+                    Description = "",
+                    Price = 12,
+                    Weight = 500,
+                    Type = "Anchovies"
+                };
+
+                products.Add(product1);
+                products.Add(product2);
+                products.Add(product3);
+                products.Add(product4);
+
                 var got_products = await ProductsProxy.GetProducts();
 
                 foreach (var item in got_products)

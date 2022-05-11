@@ -69,7 +69,7 @@ namespace Inventory.Website.Controllers
                 else
                     return Json(false); //View("Index");
             }
-            catch (Exception exp)
+            catch
             {
                 return Json(false);//View("Index", new DashboardPageData() { Message = exp.Message });
             }

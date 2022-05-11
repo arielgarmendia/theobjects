@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inventory.Website", "Websit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inventory.WebAPI", "WebAPI\Inventory.WebAPI.csproj", "{D2C8BE19-DED4-4646-8B21-6FC7DA0D3580}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.WebAPI.Proxy", "Inventory.WebAPI.Proxy\Inventory.WebAPI.Proxy.csproj", "{704765D3-BADF-4CBB-AC65-C4CD43D4C753}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inventory.WebAPI.Proxy", "Inventory.WebAPI.Proxy\Inventory.WebAPI.Proxy.csproj", "{704765D3-BADF-4CBB-AC65-C4CD43D4C753}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.Webapi.Creator", "Products.Webapi.Creator\Products.Webapi.Creator.csproj", "{C958BDD9-2B2A-4EE9-938F-4A28D5ED8022}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Products.Webapi.Creator", "Products.Webapi.Creator\Products.Webapi.Creator.csproj", "{C958BDD9-2B2A-4EE9-938F-4A28D5ED8022}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

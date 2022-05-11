@@ -28,44 +28,50 @@ namespace Inventory.Website.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Insert()
+        public async Task<JsonResult> Insert(Product product, string ExpiryDate)
         {
             try
             {
-                var name = Request.Form["inputName"].ToString();
-                var type = Request.Form["inputType"].ToString();
-                var desc = Request.Form["inputDesc"].ToString();
-                var weight = Convert.ToInt32(Request.Form["inputWeight"].ToString());
-                var price = Convert.ToDecimal(Request.Form["inputPrice"].ToString());
+                //var name = Request.Form["inputName"].ToString();
+                //var type = Request.Form["inputType"].ToString();
+                //var desc = Request.Form["inputDesc"].ToString();
+                //var weight = Convert.ToInt32(Request.Form["inputWeight"].ToString());
+                //var price = Convert.ToDecimal(Request.Form["inputPrice"].ToString());
 
-                var dateComps = Request.Form["expiryDate"].ToString().Split('/');
-                var expiry = new DateTime(Convert.ToInt32(dateComps[2]), Convert.ToInt32(dateComps[1]), Convert.ToInt32(dateComps[0]));
+                //var dateComps = Request.Form["expiryDate"].ToString().Split('/');
+                //var expiry = new DateTime(Convert.ToInt32(dateComps[2]), Convert.ToInt32(dateComps[1]), Convert.ToInt32(dateComps[0]));
 
-                var product = new Product()
-                {
-                    Name = name,
-                    InsertionDate = DateTime.Today,
-                    ExpiryDate = expiry,
-                    Description = desc,
-                    Price = price,
-                    Weight = weight,
-                    Type = type
-                };
+                //var product = new Product()
+                //{
+                //    Name = name,
+                //    InsertionDate = DateTime.Today,
+                //    ExpiryDate = expiry,
+                //    Description = desc,
+                //    Price = price,
+                //    Weight = weight,
+                //    Type = type
+                //};
+
+                var culture = new System.Globalization.CultureInfo("es-ES");
+
+                product.ExpiryDate = DateTime.Parse(ExpiryDate, culture);
 
                 List<Product> singleProduct = new List<Product>();
+
+                product.InsertionDate = DateTime.Today;
 
                 singleProduct.Add(product);
 
                 var result = await ProductsProxy.SendProducts(singleProduct);
 
                 if (result)
-                    return RedirectToAction("Index", "Dashboard");
+                    return Json(true); //RedirectToAction("Index", "Dashboard");
                 else
-                    return View("Index");
+                    return Json(false); //View("Index");
             }
             catch (Exception exp)
             {
-                return View("Index", new DashboardPageData() { Message = exp.Message });
+                return Json(false);//View("Index", new DashboardPageData() { Message = exp.Message });
             }
         }
 

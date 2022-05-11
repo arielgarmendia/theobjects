@@ -25,6 +25,8 @@
 
     <!-- Bootstrap Data Table Plugin -->
     <link rel="stylesheet" href="~/css/components/bs-datatable.css" type="text/css" />
+
+    <link rel="stylesheet" href="~/css/sweetalert2.css" type="text/css" />
 }
 
 <!-- Header  ============================================= -->
@@ -169,7 +171,7 @@
                                                             <td class="pt-3-half">@product.InsertionDate.ToString("dd/MM/yyyy")</td>
                                                             <td class="pt-3-half">@product.Type</td>
                                                             <td style="text-align:center">
-                                                                <span class="table-remove"><a target="_self" href="dashboard/remove/@product.Name" class="btn btn-danger btn-rounded btn-sm my-0">Remove</a></span>
+                                                                <span class="table-remove"><a target="_self" href="javascript:;" onclick="event.stopPropagation(); removeProduct('@(product.Name)');" class="btn btn-danger btn-rounded btn-sm my-0">Remove</a></span>
                                                             </td>
                                                             <td style="text-align:center">
                                                                 <span class="table-remove"><a target="_blank" href="dashboard/document/@product.Name" class="btn btn-info btn-rounded btn-sm my-0">Generate Document</a></span>
@@ -246,7 +248,7 @@
                                                             <td>@product.ExpiryDate.ToString("dd/MM/yyyy")</td>
                                                             <td>@product.Type</td>
                                                             <td style="text-align:center">
-                                                                <span class="table-remove"><a target="_self" href="dashboard/remove/@product.Name" class="btn btn-danger btn-rounded btn-sm my-0">Remove</a></span>
+                                                                <span class="table-remove"><a target="_self" href="javascript:;" onclick="event.stopPropagation(); removeProduct('@(product.Name)');" class="btn btn-danger btn-rounded btn-sm my-0">Remove</a></span>
                                                             </td>
                                                             <td style="text-align:center">
                                                                 <span class="table-remove"><a target="_blank" href="dashboard/document/@product.Name" class="btn btn-info btn-rounded btn-sm my-0">Generate Document</a></span>
@@ -294,6 +296,10 @@
     <!-- Footer Scripts
     ============================================= -->
     <script src="js/functions.js"></script>
+
+    <!-- Site Scripts
+    ============================================= -->
+    <script src="~/js/site.js"></script>
 
     <script>
 
@@ -366,6 +372,42 @@
             var x = document.getElementById("snackbar2");
             x.className = "show";
             setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+        }
+
+        function removeProduct(name) {
+            swal({
+                title: "Remove Product",
+                text: "Do you want to remove product: " + name + "?",
+                type: "warning",
+                showCancelButton: true,
+            }).then(function () {
+                $.ajax({
+                    url: '@Url.Action("Remove", "Dashboard")',
+                    type: 'GET',
+                    cache: false,
+                    data: {
+                        Id: name
+                    },
+                    success: function (data) {
+                        if (data) {
+                            swal({
+                                title: "OK!",
+                                text: "The product: " + name + " has been succesfully removed.",
+                                type: "success",
+                                showCancelButton: false,
+                            }).then(function () {
+                                location.reload();
+                            });
+                        }
+                        else {
+                            notifyError("An error ocurred while trying to remove the product: " + name, true);
+                        }
+                    },
+                    error: function () {
+                        notifyError("An error ocurred while trying to remove the product: " + name, true);
+                    }
+                });
+            });
         }
     </script>
 }

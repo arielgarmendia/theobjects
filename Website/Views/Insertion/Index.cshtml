@@ -27,6 +27,8 @@
 
     <!-- Bootstrap Data Table Plugin -->
     <link rel="stylesheet" href="~/css/components/bs-datatable.css" type="text/css" />
+
+    <link rel="stylesheet" href="~/css/sweetalert2.css" type="text/css" />
 }
 
 <!-- Header  ============================================= -->
@@ -130,7 +132,8 @@
                     <div class="card-footer">
                         <a href="javascript:saveClicked();" class="button button-3d button-mini button-rounded button-red"><i class="icon-save"></i><span>Save</span></a>
                     </div>
-                    @if (Model != null && Model.Message != "") { <p>@Model.Message</p>}
+                    @if (Model != null && Model.Message != "")
+                    {<p>@Model.Message</p>}
                 </form>
 
             </div>
@@ -161,6 +164,10 @@
     <!-- Footer Scripts
     ============================================= -->
     <script src="~/js/functions.js"></script>
+
+    <!-- Site Scripts
+    ============================================= -->
+    <script src="~/js/site.js"></script>
 
     <script>
 
@@ -264,7 +271,39 @@
             }
 
             if (allValid) {
-                $('#save-product').submit();
+                //$('#save-product').submit();
+
+                $.ajax({
+                    url: '@Url.Action("Insert", "Insertion")',
+                    type: 'GET',
+                    cache: false,
+                    data: {
+                        Name: $("#inputName").val(),
+                        ExpiryDate: $("#expiryDate").val(),
+                        Description: $("#inputDesc").val(),
+                        Price: $("#inputPrice").val(),
+                        Weight: $("#inputWeight").val(),
+                        Type: $("#inputType").val()
+                    },
+                    success: function (data) {
+                        if (data) {
+                            swal({
+                                title: "OK!",
+                                text: "The product: " + $("#inputName").val() + " has been succesfully inserted.",
+                                type: "success",
+                                showCancelButton: false,
+                            }).then(function () {
+                                location.reload();
+                            });
+                        }
+                        else {
+                            notifyError("An error ocurred while trying to insert the product: " + $("#inputName").val(), true);
+                        }
+                    },
+                    error: function () {
+                        notifyError("An error ocurred while trying to insert the product: " + $("#inputName").val(), true);
+                    }
+                });
             }
         }
     </script>

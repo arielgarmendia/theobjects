@@ -27,10 +27,69 @@ namespace Inventory.Website.Controllers
         {
             var pageData = new DashboardPageData();
 
-            if (TempData["data"] is string s)
-                pageData = JsonConvert.DeserializeObject<DashboardPageData>(s);
-            else
+            try
             {
+                if (TempData["data"] is string s)
+                    pageData = JsonConvert.DeserializeObject<DashboardPageData>(s);
+                else
+                {
+                    var products = await ProductsProxy.GetProducts();
+
+                    var expired = new List<Product>();
+
+                    foreach (var item in products)
+                        if (item.ExpiryDate <= DateTime.Today)
+                            expired.Add(item);
+
+                    pageData = new DashboardPageData()
+                    {
+                        Products = products,
+                        Expired = expired
+                    };
+                }
+
+                return View(pageData);
+            }
+            catch (Exception)
+            {
+                return View(pageData);
+            }
+        }
+
+        public async Task<IActionResult> Document(string Id)
+        {
+            if (Id != "")
+            {
+                try
+                {
+                    var singleProduct = await ProductsProxy.GetProduct(Id);
+
+                    var pageData = new DocumentPageData()
+                    {
+                        product = singleProduct
+                    };
+
+                    return View("Document", pageData);
+                }
+                catch (Exception)
+                {
+                    return View("Document", null);
+                }
+
+            }
+            else
+                return View("Document", null);
+        }
+
+        public async Task<JsonResult> Remove(string Id)
+        {
+            try
+            {
+                var deleted = false;
+
+                if (Id != "")
+                    deleted = await ProductsProxy.DeleteProduct(Id);
+
                 var products = await ProductsProxy.GetProducts();
 
                 var expired = new List<Product>();
@@ -39,60 +98,24 @@ namespace Inventory.Website.Controllers
                     if (item.ExpiryDate <= DateTime.Today)
                         expired.Add(item);
 
-                pageData = new DashboardPageData()
+                var pageData = new DashboardPageData()
                 {
                     Products = products,
-                    Expired = expired
-                };
-            }
-
-            return View(pageData);
-        }
-
-        public async Task<IActionResult> Document(string Id)
-        {
-            if (Id != "")
-            {
-                var singleProduct = await ProductsProxy.GetProduct(Id);
-
-                var pageData = new DocumentPageData()
-                {
-                    product = singleProduct
+                    Expired = expired,
+                    ProductRemoved = deleted
                 };
 
-                return View("Document", pageData);
+                var s = Newtonsoft.Json.JsonConvert.SerializeObject(pageData);
+
+                TempData["data"] = s;
+
+                return Json(true);
+                //return RedirectToAction("Index", "Dashboard");
             }
-            else
-                return View("Document", null);
-        }
-
-        public async Task<IActionResult> Remove(string Id)
-        {
-            var deleted = false;
-
-            if (Id != "")
-                deleted = await ProductsProxy.DeleteProduct(Id);
-
-            var products = await ProductsProxy.GetProducts();
-
-            var expired = new List<Product>();
-
-            foreach (var item in products)
-                if (item.ExpiryDate <= DateTime.Today)
-                    expired.Add(item);
-
-            var pageData = new DashboardPageData()
+            catch (Exception)
             {
-                Products = products,
-                Expired = expired,
-                ProductRemoved = deleted
-            };
-
-            var s = Newtonsoft.Json.JsonConvert.SerializeObject(pageData);
-
-            TempData["data"] = s;
-
-            return RedirectToAction("Index", "Dashboard");
+                return Json(false);
+            }
         }
 
         public IActionResult Error()

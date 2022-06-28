@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.572
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inventory.Website", "Website\Inventory.Website.csproj", "{AC74D6A9-31FF-47C4-9C97-B45D0203CFCE}"
 EndProject
@@ -10,6 +10,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inventory.WebAPI.Proxy", "Inventory.WebAPI.Proxy\Inventory.WebAPI.Proxy.csproj", "{704765D3-BADF-4CBB-AC65-C4CD43D4C753}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Products.Webapi.Creator", "Products.Webapi.Creator\Products.Webapi.Creator.csproj", "{C958BDD9-2B2A-4EE9-938F-4A28D5ED8022}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{2ACC7CC7-79A1-4001-A1F1-59779B87E648}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		problem.md = problem.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

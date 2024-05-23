@@ -11,7 +11,7 @@ namespace Inventory.WebAPI.Proxy
 {
     public class ProductsProxy
     {
-        static string baseAddress = "https://theinventorywebapi.travelgosystems.net/";//"http://localhost:61889/";//;
+        static string baseAddress = "http://localhost:61889/";//;
 
         public static async Task<bool> SendProducts(List<Product> products)
         {

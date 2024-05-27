@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Inventory.WebAPI.Model;
+using theObjects.WebAPI.Model;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Inventory.WebAPI.Controllers
+namespace theObjects.WebAPI.Controllers
 {
     [ApiController]
     public class StripeController : Controller

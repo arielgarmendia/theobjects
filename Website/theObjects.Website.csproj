@@ -690,7 +690,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Inventory.WebAPI.Proxy\Inventory.WebAPI.Proxy.csproj" />
+    <ProjectReference Include="..\theObjects.WebAPI.Proxy\theObjects.WebAPI.Proxy.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,10 +1,10 @@
-﻿using Inventory.WebAPI.Proxy.Models;
+﻿using theObjects.WebAPI.Proxy.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Inventory.Website.Models
+namespace theObjects.Website.Models
 {
     public class DashboardPageData
     {

@@ -17,14 +17,14 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Inventory.WebAPI": {
+    "theObjects.WebAPI": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/test",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://192.168.1.75/Inventory/"
+      "applicationUrl": "http://192.168.1.75/theObjects/"
     }
   }
 }

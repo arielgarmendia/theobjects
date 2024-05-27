@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Inventory.Website
+namespace theObjects.Website
 {
     public class Program
     {

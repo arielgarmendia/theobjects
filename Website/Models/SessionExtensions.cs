@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Inventory.Website.Models
+namespace theObjects.Website.Models
 {
     public static class SessionExtensions
     {

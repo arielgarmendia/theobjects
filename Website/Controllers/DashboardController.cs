@@ -3,15 +3,15 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Inventory.Website.Models;
+using theObjects.Website.Models;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Inventory.WebAPI.Proxy;
-using Inventory.WebAPI.Proxy.Models;
+using theObjects.WebAPI.Proxy;
+using theObjects.WebAPI.Proxy.ViewModels;
 
-namespace Inventory.Website.Controllers
+namespace theObjects.Website.Controllers
 {
     [Authorize]
     public class DashboardController : Controller
@@ -33,7 +33,7 @@ namespace Inventory.Website.Controllers
                     pageData = JsonConvert.DeserializeObject<DashboardPageData>(s);
                 else
                 {
-                    var products = await ProductsProxy.GetProducts();
+                    var products = await ObjectsProxy.GetProducts();
 
                     var expired = new List<Product>();
 
@@ -62,7 +62,7 @@ namespace Inventory.Website.Controllers
             {
                 try
                 {
-                    var singleProduct = await ProductsProxy.GetProduct(Id);
+                    var singleProduct = await ObjectsProxy.GetProduct(Id);
 
                     var pageData = new DocumentPageData()
                     {
@@ -88,9 +88,9 @@ namespace Inventory.Website.Controllers
                 var deleted = false;
 
                 if (Id != "")
-                    deleted = await ProductsProxy.DeleteProduct(Id);
+                    deleted = await ObjectsProxy.DeleteProduct(Id);
 
-                var products = await ProductsProxy.GetProducts();
+                var products = await ObjectsProxy.GetProducts();
 
                 var expired = new List<Product>();
 

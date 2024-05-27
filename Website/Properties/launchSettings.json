@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Inventory.Website": {
+    "theObjects.Website": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

@@ -3,15 +3,15 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Inventory.Website.Models;
+using theObjects.Website.Models;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Inventory.WebAPI.Proxy.Models;
-using Inventory.WebAPI.Proxy;
+using theObjects.WebAPI.Proxy.ViewModels;
+using theObjects.WebAPI.Proxy;
 
-namespace Inventory.Website.Controllers
+namespace theObjects.Website.Controllers
 {
     [Authorize]
     public class InsertionController : Controller
@@ -62,7 +62,7 @@ namespace Inventory.Website.Controllers
 
                 singleProduct.Add(product);
 
-                var result = await ProductsProxy.SendProducts(singleProduct);
+                var result = await ObjectsProxy.SendProducts(singleProduct);
 
                 if (result)
                     return Json(true); //RedirectToAction("Index", "Dashboard");

@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Inventory.WebAPI.Model;
+using theObjects.WebAPI.Model;
 
-namespace Inventory.WebAPI.Controllers
+namespace theObjects.WebAPI.Controllers
 {
     [ApiController]
     public class ProductsController : ControllerBase

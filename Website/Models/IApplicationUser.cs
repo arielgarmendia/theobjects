@@ -1,4 +1,4 @@
-namespace Inventory.Website.Models
+namespace theObjects.Website.Models
 {
 
     public interface IApplicationUser

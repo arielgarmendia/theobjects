@@ -1,4 +1,4 @@
-﻿using Inventory.WebAPI.Proxy.Models;
+﻿using theObjects.WebAPI.Proxy.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,9 +7,9 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Inventory.WebAPI.Proxy
+namespace theObjects.WebAPI.Proxy
 {
-    public class ProductsProxy
+    public class ObjectsProxy
     {
         static string baseAddress = "http://localhost:61889/";//;
 

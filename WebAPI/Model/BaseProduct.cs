@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting.Internal;
 using Newtonsoft.Json;
 using SQLite;
 
-namespace Inventory.WebAPI.Model
+namespace theObjects.WebAPI.Model
 {
     public class BaseProduct
     {
@@ -15,7 +15,7 @@ namespace Inventory.WebAPI.Model
         {
             set
             {
-                database_file = Path.Combine(value, "App_Data\\inventoryproducts.db3");
+                database_file = Path.Combine(value, "App_Data\\theObjectsproducts.db3");
 
                 CreateDatabase();
             }

@@ -21,7 +21,7 @@ namespace API.Controllers
         }
 
         #region Points
-        [HttpGet]
+        [HttpPost]
         [Route(nameof(GetPoints))]
         public IActionResult GetPoints()
         {
@@ -32,10 +32,15 @@ namespace API.Controllers
                 var circles = _context.Circle.Include("Position");
                 var squares = _context.Square.Include("Position");
                 var rectangles = _context.Rectangle.Include("Position");
+                var lines = _context.Line.Include("StartPosition").Include("EndPosition");
 
                 foreach (var point in _context.Point)
                 {
-                    var singlePoint = circles.Where(c => c.Position.ID == point.ID).FirstOrDefault() == null && squares.Where(c => c.Position.ID == point.ID).FirstOrDefault() == null && rectangles.Where(c => c.Position.ID == point.ID).FirstOrDefault() == null;
+                    var singlePoint = circles.Where(c => c.Position.ID == point.ID).FirstOrDefault() == null &&
+                                      squares.Where(c => c.Position.ID == point.ID).FirstOrDefault() == null &&
+                                      rectangles.Where(c => c.Position.ID == point.ID).FirstOrDefault() == null &&
+                                      lines.Where(l => l.StartPosition.ID == point.ID).FirstOrDefault() == null &&
+                                      lines.Where(l => l.EndPosition.ID == point.ID).FirstOrDefault() == null;
 
                     if (singlePoint)
                         points.Add(point);
@@ -114,7 +119,7 @@ namespace API.Controllers
         #endregion
 
         #region Circles
-        [HttpGet]
+        [HttpPost]
         [Route(nameof(GetCircles))]
         public IActionResult GetCircles()
         {
@@ -198,7 +203,7 @@ namespace API.Controllers
         #endregion
 
         #region Rectangles
-        [HttpGet]
+        [HttpPost]
         [Route(nameof(GetRectangles))]
         public IActionResult GetRectangles()
         {
@@ -283,7 +288,7 @@ namespace API.Controllers
         #endregion
 
         #region Squares
-        [HttpGet]
+        [HttpPost]
         [Route(nameof(GetSquares))]
         public IActionResult GetSquares()
         {
@@ -367,7 +372,7 @@ namespace API.Controllers
         #endregion
 
         #region Lines
-        [HttpGet]
+        [HttpPost]
         [Route(nameof(GetLines))]
         public IActionResult GetLines()
         {

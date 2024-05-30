@@ -2,14 +2,6 @@
 using theObjects.Database;
 using Microsoft.EntityFrameworkCore;
 using theObjects.Database.Model.Data;
-using theObjects.WebAPI.Proxy;
-//using theObjects.WebAPI.Proxy.ViewModels;
-//using Point = theObjects.WebAPI.Proxy.ViewModels.Point;
-//using Circle = theObjects.WebAPI.Proxy.ViewModels.Circle;
-//using Rectangle = theObjects.WebAPI.Proxy.ViewModels.Rectangle;
-//using Square = theObjects.WebAPI.Proxy.ViewModels.Square;
-//using Line = theObjects.WebAPI.Proxy.ViewModels.Line;
-using theObjects.WebAPI.Proxy.Helpers;
 
 namespace theObjects.Production.Creator
 {
@@ -106,7 +98,7 @@ namespace theObjects.Production.Creator
                     var rectangle1 = new Rectangle()
                     {
                         ID = Guid.NewGuid(),
-                        Lenght = 20,
+                        Length = 20,
                         Width = 40,
                         Position = new Point()
                         {
@@ -119,7 +111,7 @@ namespace theObjects.Production.Creator
                     var rectangle2 = new Rectangle()
                     {
                         ID = Guid.NewGuid(),
-                        Lenght = 20,
+                        Length = 20,
                         Width = 40,
                         Position = new Point()
                         {
@@ -132,7 +124,7 @@ namespace theObjects.Production.Creator
                     var rectangle3 = new Rectangle()
                     {
                         ID = Guid.NewGuid(),
-                        Lenght = 20,
+                        Length = 20,
                         Width = 40,
                         Position = new Point()
                         {
@@ -278,7 +270,7 @@ namespace theObjects.Production.Creator
 
                     foreach (var rectangle in rectangles)
                     {
-                        Console.WriteLine(string.Format("Rectangle with ID: {0} and Lenght {1} and Width {2} and Position: {3}", rectangle.ID.ToString(), rectangle.Lenght.ToString(), rectangle.Width.ToString(), string.Format("X={0}:Y={1}", rectangle.Position.X.ToString(), rectangle.Position.Y.ToString())));
+                        Console.WriteLine(string.Format("Rectangle with ID: {0} and Lenght {1} and Width {2} and Position: {3}", rectangle.ID.ToString(), rectangle.Length.ToString(), rectangle.Width.ToString(), string.Format("X={0}:Y={1}", rectangle.Position.X.ToString(), rectangle.Position.Y.ToString())));
                     }
 
                     Console.WriteLine("Getting Database Lines...");
@@ -300,19 +292,6 @@ namespace theObjects.Production.Creator
                             Console.WriteLine(string.Format("Point with ID: {0} and Position: {1}", point.ID.ToString(), string.Format("X={0}:Y={1}", point.X.ToString(), point.Y.ToString())));
                     }
                 }
-
-                //ObjectsProxy TEST
-
-                //var result1 = await Screen<Point>.GetAll();
-                //var result2 = await Screen<Circle>.GetAll();
-                //var result3 = await Screen<Rectangle>.GetAll();
-                //var result4 = await Screen<Square>.GetAll();
-                //var result5 = await Screen<Line>.GetAll();
-
-                //var result6 = await Screen<Point>.Get(new Guid("5eb9fe04-5581-4e87-a9b0-02be5c68978f"));
-
-                //var res = await Screen<Point>.Draw(new Point(2000, 2000));
-                //var res2 = await Screen<Point>.Move(new Guid("5eb9fe04-5581-4e87-a9b0-02be5c68978f"), 2500, 2500);
 
                 Console.WriteLine("Type any key to Exit the app...");
                 Console.ReadKey(true);

@@ -41,9 +41,9 @@
     - **password**: 1theObjects23
 - Before logging into the website, check that security is working by clicking on any of the menu links in the login page.
 - An online working version of both, the website and *WebAPI* service are available here:
-    - https://thetheObjects.travelgosystems.net
-    - https://thetheObjectswebapi.travelgosystems.net
+    - https://theObjects.travelgosystems.net
+    - https://theObjectswebapi.travelgosystems.net
     
-      >Usage example: https://thetheObjectswebapi.travelgosystems.net/api/products/all
+      >Usage example: https://theObjectswebapi.travelgosystems.net/api/products/all
 - If you remove all products in the theObjects and want to insert few test ones, just run the console application provided in the solution: *Products.Webapi.Creator*.
 - *JS* validators located at Insertion page just show a red box if empty or invalid values.

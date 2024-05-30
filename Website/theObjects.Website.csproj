@@ -671,6 +671,9 @@
     <Content Update="Views\Insertion\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Movement\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Shared\_LoginLayout.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

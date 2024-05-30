@@ -36,7 +36,7 @@ namespace theObjects.Database
             modelBuilder.Entity<Rectangle>(entity =>
             {
                 entity.HasKey(e => e.ID);
-                entity.Property(e => e.Lenght).IsRequired();
+                entity.Property(e => e.Length).IsRequired();
                 entity.Property(e => e.Width).IsRequired();
                 entity.Property(e => e.Area).HasDefaultValue(0);
                 entity.Property(e => e.Perimeter).HasDefaultValue(0);

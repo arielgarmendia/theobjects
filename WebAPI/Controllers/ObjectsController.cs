@@ -270,7 +270,7 @@ namespace API.Controllers
                         X = command.X,
                         Y = command.Y
                     },
-                    Lenght = command.Lenght,
+                    Length = command.Length,
                     Width = command.Width
                 };
 

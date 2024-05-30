@@ -89,16 +89,16 @@
             <div class="col_full card">
                 <form id="save-product" name="save-product" class="nobottommargin" asp-action="Insert" asp-controller="Insertion">
 
-                    <div class="card-header">POINT DETAILS</div>
+                    <div class="card-header">POINT With ID: <strong>@ViewBag.Id.ToString()</strong></div>
                     <div class="card-body">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputX">Point Position X</label>
-                                <input class="required form-control" id="inputX" name="inputX" value="">
+                                <input class="required form-control" id="inputX" name="inputX" value="@ViewBag.X.ToString()">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputY">Point Position Y</label>
-                                <input type="text" class="form-control" id="inputY" name="inputY" placeholder="" value="">
+                                <input type="text" class="form-control" id="inputY" name="inputY" placeholder="" value="@ViewBag.Y.ToString()">
                             </div>
                         </div>
                     </div>
@@ -191,10 +191,11 @@
 
             if (allValid) {
                 $.ajax({
-                    url: '@Url.Action("InsertPoint", "Insertion")',
+                    url: '@Url.Action("MovePoint", "Movement")',
                     type: 'GET',
                     cache: false,
                     data: {
+                        Id: '@ViewBag.Id.ToString()',
                         X: $("#inputX").val(),
                         Y: $("#inputY").val()
                     },
@@ -202,7 +203,7 @@
                         if (data) {
                             swal({
                                 title: "OK!",
-                                text: "The new Point has been succesfully inserted.",
+                                text: "The Point has been succesfully moved.",
                                 type: "success",
                                 showCancelButton: false,
                             }).then(function () {
@@ -210,11 +211,11 @@
                             });
                         }
                         else {
-                            notifyError("An error ocurred while trying to insert the new Point:", true);
+                            notifyError("An error ocurred while trying to move the Point:", true);
                         }
                     },
                     error: function () {
-                        notifyError("An error ocurred while trying to insert the new Point", true);
+                        notifyError("An error ocurred while trying to move the Point", true);
                     }
                 });
             }

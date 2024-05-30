@@ -14,25 +14,43 @@ using theObjects.WebAPI.Proxy;
 namespace theObjects.Website.Controllers
 {
     [Authorize]
-    public class InsertionController : Controller
+    public class MovementController : Controller
     {
         IConfiguration siteConfig;
 
-        public InsertionController(IConfiguration configuration)
+        public MovementController(IConfiguration configuration)
         {
             siteConfig = configuration;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(Guid Id, string Type)
         {
+            ViewBag.Id = Id;
+
+            if (Type == "Point")
+            {
+                var result = await Screen<Point>.Get(Id);
+
+                if (result != null)
+                {
+                    ViewBag.X = result.X;
+                    ViewBag.Y = result.Y;
+                }
+                else
+                {
+                    ViewBag.X = 0;
+                    ViewBag.Y = 0;
+                }
+            }
+
             return View();
         }
 
-        public async Task<JsonResult> InsertPoint(int X, int Y)
+        public async Task<JsonResult> MovePoint(Guid Id, int X, int Y)
         {
             try
             {
-                var result = await Screen<Point>.Draw(new Point(X, Y));
+                var result = await Screen<Point>.Move(Id, X, Y);
 
                 return Json(result); 
             }

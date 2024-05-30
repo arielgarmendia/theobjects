@@ -10,6 +10,6 @@ namespace theObjects.Database.Model.Commands
         public int X { get; set; }
         public int Y { get; set; }
         public double Width { get; set; }
-        public double Lenght { get; set; }
+        public double Length { get; set; }
     }
 }

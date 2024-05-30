@@ -8,6 +8,7 @@ namespace theObjects.Website.Models
 {
     public class DocumentPageData
     {
-        public Product product { get; set; }
+        public Shape shape { get; set; }
+        public List<Shape> shapes { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace theObjects.WebAPI.Proxy.ViewModels
         public Line(Point StartPosition, Point EndPosition) : base()
         { 
             this.StartPosition = StartPosition;
-            this.StartPosition = StartPosition;
+            this.EndPosition = EndPosition;
         }
     }
 }

@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\theObjects.Database\theObjects.Database.csproj" />
+    <ProjectReference Include="..\theObjects.WebAPI.Proxy\theObjects.WebAPI.Proxy.csproj" />
   </ItemGroup>
 
   <ItemGroup>

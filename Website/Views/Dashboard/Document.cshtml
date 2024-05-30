@@ -1,40 +1,91 @@
-﻿@model DocumentPageData
+﻿@using theObjects.WebAPI.Proxy.ViewModels
+@model DocumentPageData
 
 @{
     Layout = "/Views/Shared/_DocLayout.cshtml";
 }
 
-@section Styles {
-    <!-- Document Title ============================================= -->
-    <title>@Model.product.Name</title>
+<title>TXT file</title>
+
+@if (Model != null && Model.shape != null)
+{
+    <p>Object Type: @Model.shape.GetType().Name</p>
+    var fullText = new List<string>();
+
+    fullText.Add(string.Format("ID: {0}", (Model.shape.ID.ToString())));
+
+    switch (Model.shape.GetType().Name)
+    {
+        case "Point":
+            fullText.Add(string.Format("Position: X:{0},Y:{1}", (Model.shape as Point).X, (Model.shape as Point).Y));
+            break;
+        case "Circle":
+            fullText.Add(string.Format("Position: X:{0},Y:{1}", (Model.shape as Circle).Position.X, (Model.shape as Circle).Position.Y));
+            fullText.Add(string.Format("Diameter: {0}", (Model.shape as Circle).Diameter.ToString("N2")));
+            break;
+        case "Rectangle":
+            fullText.Add(string.Format("Position: X:{0},Y:{1}", (Model.shape as Rectangle).Position.X, (Model.shape as Rectangle).Position.Y));
+            fullText.Add(string.Format("Width: {0}", (Model.shape as Rectangle).Width.ToString("N2")));
+            fullText.Add(string.Format("Length: {0}", (Model.shape as Rectangle).Length.ToString("N2")));
+            break;
+        case "Square":
+            fullText.Add(string.Format("Position: X:{0},Y:{1}", (Model.shape as Square).Position.X, (Model.shape as Square).Position.Y));
+            fullText.Add(string.Format("Side: {0}", (Model.shape as Square).Side.ToString("N2")));
+            break;
+        case "Line":
+            fullText.Add(string.Format("Position: X1:{0},Y1:{1} : X2:{2},Y2:{3}", (Model.shape as Line).StartPosition.X, (Model.shape as Line).StartPosition.Y, (Model.shape as Line).EndPosition.X, (Model.shape as Line).EndPosition.Y));
+            break;
+        }
+
+        foreach (var text in fullText)
+        {
+            <p>@text</p>        
+        }
+
+        <p>___________________________________________________</p>
 }
-
-
-<!-- Content
-============================================= -->
-    <section id="content">
-
-        @if (Model != null)
+else
+    if (Model.shapes != null && Model.shapes.Any())
+    {
+        foreach (var anObject in Model.shapes)
         {
-            <p><strong>Product Name: </strong></p>
-            <p>@Model.product.Name</p>
-            <p><strong>Insertion Date: </strong></p>
-            <p>@Model.product.InsertionDate.ToString("dd/MM/yyyy")</p>
-            <p><strong>Type: </strong></p>
-            <p>@Model.product.Type</p>
-            <p><strong>Description: </strong></p>
-            <p>@Model.product.Description</p>
-            <p><strong>Expiry Date: </strong></p>
-            <p>@Model.product.ExpiryDate.ToString("dd/MM/yyyy")</p>
-            <p><strong>Price: </strong></p>
-            <p>@Model.product.Price</p>
-            <p><strong>Weight: </strong></p>
-            <p>@Model.product.Weight</p>
-        }
-        else
-        {
-            <p>No Product to generate Documentation.</p>
-        }
+            <p>Object Type: @anObject.GetType().Name</p>
+            var fullText = new List<string>();
 
-    </section>
-<!-- #content end -->
+            fullText.Add(string.Format("ID: {0}", (anObject.ID.ToString())));
+
+            switch (anObject.GetType().Name)
+            {
+                case "Point":
+                    fullText.Add(string.Format("Position: X:{0},Y:{1}", (anObject as Point).X, (anObject as Point).Y));
+                    break;
+                case "Circle":
+                    fullText.Add(string.Format("Position: X:{0},Y:{1}", (anObject as Circle).Position.X, (anObject as Circle).Position.Y));
+                    fullText.Add(string.Format("Diameter: {0}", (anObject as Circle).Diameter.ToString("N2")));
+                    break;
+                case "Rectangle":
+                    fullText.Add(string.Format("Position: X:{0},Y:{1}", (anObject as Rectangle).Position.X, (anObject as Rectangle).Position.Y));
+                    fullText.Add(string.Format("Width: {0}", (anObject as Rectangle).Width.ToString("N2")));
+                    fullText.Add(string.Format("Length: {0}", (anObject as Rectangle).Length.ToString("N2")));
+                    break;
+                case "Square":
+                    fullText.Add(string.Format("Position: X:{0},Y:{1}", (anObject as Square).Position.X, (anObject as Square).Position.Y));
+                    fullText.Add(string.Format("Side: {0}", (anObject as Square).Side.ToString("N2")));
+                    break;
+                case "Line":
+                    fullText.Add(string.Format("Position: X1:{0},Y1:{1} : X2:{2},Y2:{3}", (anObject as Line).StartPosition.X, (anObject as Line).StartPosition.Y, (anObject as Line).EndPosition.X, (anObject as Line).EndPosition.Y));
+                    break;
+            }
+
+            foreach (var text in fullText)
+            {
+                <p>@text</p>
+            }
+
+            <p>___________________________________________________</p>
+        }
+    }
+    else
+    {
+        <p>No Object(s) to generate TXT.</p>
+    }

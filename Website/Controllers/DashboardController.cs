@@ -33,18 +33,17 @@ namespace theObjects.Website.Controllers
                     pageData = JsonConvert.DeserializeObject<DashboardPageData>(s);
                 else
                 {
-                    var products = await ObjectsProxy.GetProducts();
+                    var objects = new List<Shape>();
 
-                    var expired = new List<Product>();
-
-                    foreach (var item in products)
-                        if (item.ExpiryDate <= DateTime.Today)
-                            expired.Add(item);
+                    objects.AddRange(await Screen<Point>.GetAll());
+                    objects.AddRange(await Screen<Circle>.GetAll());
+                    objects.AddRange(await Screen<Rectangle>.GetAll());
+                    objects.AddRange(await Screen<Square>.GetAll());
+                    objects.AddRange(await Screen<Line>.GetAll());
 
                     pageData = new DashboardPageData()
                     {
-                        Products = products,
-                        Expired = expired
+                        Objects = objects
                     };
                 }
 
@@ -56,17 +55,61 @@ namespace theObjects.Website.Controllers
             }
         }
 
-        public async Task<IActionResult> Document(string Id)
+        public async Task<IActionResult> Documents()
         {
-            if (Id != "")
+            try
+            {
+                List<Shape> objects = new List<Shape>();
+
+                objects.AddRange(await Screen<Point>.GetAll());
+                objects.AddRange(await Screen<Circle>.GetAll());
+                objects.AddRange(await Screen<Rectangle>.GetAll());
+                objects.AddRange(await Screen<Square>.GetAll());
+                objects.AddRange(await Screen<Line>.GetAll());
+
+                var pageData = new DocumentPageData()
+                {
+                    shapes = objects
+                };
+
+                return View("Document", pageData);
+            }
+            catch (Exception)
+            {
+                return View("Document", null);
+            }
+        }
+
+        public async Task<IActionResult> Document(Guid Id, string Type)
+        {
+            if (Id != Guid.Empty)
             {
                 try
                 {
-                    var singleProduct = await ObjectsProxy.GetProduct(Id);
+                    Shape singleObject = null;
+
+                    switch (Type)
+                    {
+                        case "Point":
+                            singleObject = await Screen<Point>.Get(Id);
+                            break;
+                        case "Circle":
+                            singleObject = await Screen<Circle>.Get(Id);
+                            break;
+                        case "Rectangle":
+                            singleObject = await Screen<Rectangle>.Get(Id);
+                            break;
+                        case "Square":
+                            singleObject = await Screen<Square>.Get(Id);
+                            break;
+                        case "Line":
+                            singleObject = await Screen<Line>.Get(Id);
+                            break;
+                    }
 
                     var pageData = new DocumentPageData()
                     {
-                        product = singleProduct
+                        shape = singleObject
                     };
 
                     return View("Document", pageData);
@@ -79,43 +122,6 @@ namespace theObjects.Website.Controllers
             }
             else
                 return View("Document", null);
-        }
-
-        public async Task<JsonResult> Remove(string Id)
-        {
-            try
-            {
-                var deleted = false;
-
-                if (Id != "")
-                    deleted = await ObjectsProxy.DeleteProduct(Id);
-
-                var products = await ObjectsProxy.GetProducts();
-
-                var expired = new List<Product>();
-
-                foreach (var item in products)
-                    if (item.ExpiryDate <= DateTime.Today)
-                        expired.Add(item);
-
-                var pageData = new DashboardPageData()
-                {
-                    Products = products,
-                    Expired = expired,
-                    ProductRemoved = deleted
-                };
-
-                var s = Newtonsoft.Json.JsonConvert.SerializeObject(pageData);
-
-                TempData["data"] = s;
-
-                return Json(true);
-                //return RedirectToAction("Index", "Dashboard");
-            }
-            catch (Exception)
-            {
-                return Json(false);
-            }
         }
 
         public IActionResult Error()

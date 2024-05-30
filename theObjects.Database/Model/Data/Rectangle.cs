@@ -11,7 +11,7 @@ namespace theObjects.Database.Model.Data
         public Guid ID { get; set; }
         public virtual Point Position { get; set; }
         public double Width { get; set; }
-        public double Lenght { get; set; }
+        public double Length { get; set; }
         public double Area { get; set; }
         public double Perimeter { get; set; }
     }

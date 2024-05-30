@@ -29,7 +29,7 @@
 
   Note: If you would find multiple ways how to interpret the business requirements write them all down and explain why you chose the one that you implement.
 
-## **Important tips and notes:**
+## **The Solution: Important tips and notes:**
 
 - **Clone** this repository in your local repo folder then **Open** solution then **Rebuild** solution to restore **Nuget** packages.
 - The *WebAPI* application uses *SQL Server* to store theObjects.
